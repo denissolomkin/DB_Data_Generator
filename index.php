@@ -34,11 +34,7 @@ class MODEL
 {
     private $tables;
     private $db;
-    private $defaults=array ("location"=>"localhost","login"=>"ecology_user","password"=>"wSUAh_?$.F^8","database"=>"edoc");
     private $timer;
-
-    private function timerSet(){ $this->timer = microtime(true);}
-    private function timerGet(){ return sprintf(' (%f sec)', microtime(true) - $this->timer);}
 
     /* connect to database */
     public function connectDB($db)
