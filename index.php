@@ -15,7 +15,7 @@ class CONTROLLER
     {
 
         $settings=getopt("l:d:u:p:t:r:",array("location:","database:","login:","password:","table:","rows:"));
-        $connect=$_POST['database']?$_POST['database']: ($settings['database'] ? $settings : $_SESSION['db']);
+        $connect=$_POST['database']?$_POST['database']: ($settings ? $settings : $_SESSION['db']);
         $table=  $_POST['table']   ?$_POST['table']   : ($settings['table'] ? $settings : null);
 
         $database=$this->model->connectDB($connect);
@@ -34,7 +34,6 @@ class MODEL
 {
     private $tables;
     private $db;
-    private $timer;
 
     /* connect to database */
     public function connectDB($db)
