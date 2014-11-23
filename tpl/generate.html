@@ -1,0 +1,23 @@
+<div  onclick="toggle('generate')"  style="cursor: pointer;" class="bs-callout bs-callout-info"><h4><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Total added rows: <?=count($data)?></div>
+<script>toggle('tables');</script>
+    <div style="width:100%" id="generate" class="tables">
+
+
+    <table class="table" id="<?=$title?>">
+        <tr>
+        <? foreach($data[1] as $key2=>$col):
+            if($key2=='TABLE_NAME') continue;?>
+           <th><?=$key2?></th>
+        <? endforeach ?>
+        </tr>
+        <? foreach($data as $rows):
+            if($rows=='TABLE_NAME') continue;?>
+            <tr>
+            <? foreach($rows as $column):?>
+                <td><?=str_replace("'",'',$column)?></td>
+            <? endforeach ?>
+            </tr>
+        <? endforeach ?>
+    </table>
+    </div>
+<div style="clear: both;"></div>
