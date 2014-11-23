@@ -1,0 +1,47 @@
+<div  onclick="toggle('tables')"  style="cursor: pointer;" class="bs-callout bs-callout-<?=$data['error']?'danger"><h4>'.$data['error']:'info"><h4><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Total tables: '.count($data)?></div>
+        <div id="tables">
+<? foreach($data as $title=>$table): ?>
+    <div class="tables">
+    <form class="form-horizontal" role="form" method="post" action="">
+        <div class="form-group">
+            <div class="col-sm-7" style="margin: 0; cursor: pointer;" >
+            <h3 style="margin: 0;" onclick="toggle('<?=$title?>')"><nobr>
+                <small><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span></small> <?=str_replace(
+                array(' (',')'),
+                array(' <small>(',', columns: '.count($table).')'),$title)?></small>
+            </nobr> </h3>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" id="rows" class="form-control"   name="table[rows]"   value="" placeholder="rows">
+            </div>
+
+            <div class="col-sm-1">
+                <input type="hidden" name="table[table]" value="<?=substr($title,0,strpos($title,' ('));?>">
+                <input type="submit" class="btn btn-primary" value="Add">
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped" id="<?=$title?>" style="display: none;">
+        <thead><tr>
+        <? foreach($table[current(array_keys($table))] as $name=>$rows):
+            if($name=='TABLE_NAME') continue;?>
+           <th><?=$name?></th>
+        <? endforeach ?>
+        </tr>
+        </thead>
+        <tbody>
+        <? foreach($table as $rows): ?>
+            <tr>
+            <? foreach($rows as $title=>$column):if($title=='TABLE_NAME') continue;?>
+                <td><?=$column?></td>
+            <? endforeach ?>
+            </tr>
+        <? endforeach ?>
+        </tbody>
+    </table>
+    </div>
+<? endforeach ?>
+        </div>
+
+<div style="clear: both;"></div>
