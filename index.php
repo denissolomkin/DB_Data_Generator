@@ -227,7 +227,6 @@ class VIEW
     }
 }
 
-
 $control=new CONTROLLER;
 $control->start();
 ?>
